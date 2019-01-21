@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <description>sftp配置</description>
+
+    <bean id="sftpPoolClient" class="com.xxl.integration.commonpool.SftpPoolService">
+        <constructor-arg name="sftpParam">
+            <bean class="com.xxl.integration.commonpool.SftpParam">
+                <property name="host" value="${sftp.host}"/>
+                <property name="port" value="${sftp.port}"/>
+                <property name="userName" value="${sftp.user}"/>
+                <property name="password" value="${sftp.pwd}"/>
+                <property name="maxAlive" value="${sftp.aliveMax}"/>
+                <property name="timeOut" value="${sftp.timeout}"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg name="poolConfig">
+            <bean class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+                <property name="minIdle" value="${sftp.pool.minIdle}"/>
+                <property name="maxIdle" value="${sftp.pool.maxIdle}"/>
+                <property name="maxTotal" value="${sftp.pool.maxTotal}"/>
+                <property name="maxWaitMillis" value="${sftp.pool.maxWaitMillis}"/>
+                <property name="timeBetweenEvictionRunsMillis" value="${sftp.pool.timeBetweenEvictionRunsMillis}"/>
+                <property name="minEvictableIdleTimeMillis" value="${sftp.pool.minEvictableIdleTimeMillis}"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg name="abandonedConfig">
+            <bean class="org.apache.commons.pool2.impl.AbandonedConfig">
+                <property name="removeAbandonedOnBorrow" value="true"/>
+                <property name="removeAbandonedOnMaintenance" value="true"/>
+                <property name="removeAbandonedTimeout" value="${sftp.pool.removeAbandonedTimeoutSeconds}"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+</beans>
