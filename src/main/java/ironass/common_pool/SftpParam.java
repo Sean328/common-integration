@@ -1,7 +1,7 @@
-package com.xxl.common_pool;
+package com.ironass.common_pool;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.xxl.integration.base.BaseDomain;
+import com.ironass.integration.base.BaseDomain;
 
 /**
  * @author lixin

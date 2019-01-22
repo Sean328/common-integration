@@ -1,4 +1,4 @@
-package com.xxl;
+package com.ironass;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

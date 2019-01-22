@@ -1,7 +1,7 @@
-package com.xxl.dsl.builder;
+package com.ironass.dsl.builder;
 
 
-import com.xxl.base.BaseDomain;
+import com.ironass.base.BaseDomain;
 
 /**
  * @author lixin

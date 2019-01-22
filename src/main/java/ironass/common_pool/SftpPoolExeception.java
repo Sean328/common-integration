@@ -1,4 +1,4 @@
-package com.xxl.common_pool;
+package com.ironass.common_pool;
 
 /**
  * @author lixin

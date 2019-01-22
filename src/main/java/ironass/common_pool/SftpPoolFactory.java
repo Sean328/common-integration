@@ -1,4 +1,4 @@
-package com.xxl.common_pool;
+package com.ironass.common_pool;
 
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;

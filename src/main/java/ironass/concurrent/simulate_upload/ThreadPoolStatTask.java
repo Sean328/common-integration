@@ -1,4 +1,4 @@
-package com.xxl.concurrent.simulate_upload;
+package com.ironass.concurrent.simulate_upload;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

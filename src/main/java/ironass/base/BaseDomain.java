@@ -1,4 +1,4 @@
-package com.xxl.base;
+package com.ironass.base;
 
 import com.alibaba.fastjson.JSON;
 

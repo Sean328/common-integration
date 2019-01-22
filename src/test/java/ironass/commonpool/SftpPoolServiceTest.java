@@ -1,7 +1,7 @@
-package com.xxl.commonpool;
+package com.ironass.commonpool;
 
-import com.xxl.BaseSpringTest;
-import com.xxl.common_pool.SftpPoolService;
+import com.ironass.BaseSpringTest;
+import com.ironass.common_pool.SftpPoolService;
 import org.junit.Test;
 
 import javax.annotation.Resource;

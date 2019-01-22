@@ -1,8 +1,8 @@
-package com.xxl.common_pool;
+package com.ironass.common_pool;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.Session;
-import com.xxl.integration.base.BaseDomain;
+import com.ironass.integration.base.BaseDomain;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.AbandonedConfig;
 import org.apache.commons.pool2.impl.GenericObjectPool;
