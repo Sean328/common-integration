@@ -1,4 +1,5 @@
-package com.ironass.common_pool;
+package ironass.common_pool;
+
 /**
- * 使用 apache common包中的GenericObjectPool 的通用对象池技术，来构建一个sftp连接池。
+ * 使用apace-common-pool 通用对象池实现的一个sftp连接池
  */

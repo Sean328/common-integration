@@ -1,4 +1,4 @@
-package com.ironass.common_pool;
+package ironass.common_pool;
 
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
@@ -14,8 +14,8 @@ public class SftpPoolFactory extends BasePooledObjectFactory<SftpClient> {
 
     private Logger logger = LoggerFactory.getLogger(SftpPoolFactory.class);
 
-    private SftpParam sftpParam;
-    private SftpClient sftpClient;
+    protected SftpParam sftpParam;
+
 
     public SftpPoolFactory(SftpParam sftpParam) {
         this.sftpParam = sftpParam;
@@ -25,11 +25,11 @@ public class SftpPoolFactory extends BasePooledObjectFactory<SftpClient> {
     public SftpClient create() throws Exception {
         logger.info("sftp pool factory created , sftp info:{}", sftpParam);
 
-        sftpClient = new SftpClient(sftpParam);
+        SftpClient sftpClient = new SftpClient(sftpParam);
         try {
             sftpClient.connect();
         } catch (Exception e) {
-            logger.error("sftp pool factory init connection failed {}", sftpClient, e);
+            logger.error("sftp pool factory init connection failed {}", sftpParam, e);
             sftpClient.close();
             throw e;
         }
@@ -37,7 +37,7 @@ public class SftpPoolFactory extends BasePooledObjectFactory<SftpClient> {
     }
 
     @Override
-    public PooledObject<SftpClient> wrap(SftpClient obj) {
+    public PooledObject<SftpClient> wrap(SftpClient sftpClient) {
         logger.info("sftp pool factory warped, sftp info:{}", sftpParam);
 
         return new DefaultPooledObject<>(sftpClient);

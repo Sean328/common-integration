@@ -1,8 +1,5 @@
-package com.ironass.common_pool;
+package ironass.common_pool;
 
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.Session;
-import com.ironass.integration.base.BaseDomain;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.AbandonedConfig;
 import org.apache.commons.pool2.impl.GenericObjectPool;
@@ -10,42 +7,43 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
-import java.io.InputStream;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lixin
  * @date 2019-01-21 14:42
  **/
-public class SftpPoolService extends BaseDomain implements Closeable {
+public class SftpPoolService extends SftpClient{
 
     private static final long serialVersionUID = 6054548928347779077L;
 
     private final Logger logger = LoggerFactory.getLogger(SftpPoolService.class);
-    private Session session = null;
-    private ChannelSftp channel = null;
+
     private SftpParam sftpParam = null;
 
     private ObjectPool<SftpClient> sftpPool;
 
 
+    public SftpPoolService(){
+
+    }
+
     public SftpPoolService(SftpParam sftpParam, GenericObjectPoolConfig poolConfig, AbandonedConfig abandonedConfig) {
-        this.sftpParam = sftpParam;
+        this.setSftpParam(sftpParam);
         this.sftpPool = new GenericObjectPool<>(new SftpPoolFactory(sftpParam), poolConfig, abandonedConfig);
     }
 
 
-    public void uploadFile(InputStream origin, String fileName, String filePath) {
+    public void uploadFile(SftpDomain domain) {
 
-//        logger.info("the number of instances currently idle in this pool is {}", sftpPool.getNumIdle());
-//        logger.info("the number of instances currently borrowed from this pool is {}", sftpPool.getNumActive());
-
+        logger.info("开始上传： {}",domain.getFileName());
         SftpClient client = null;
         try {
             client = sftpPool.borrowObject();
-            client.uploadWithAbsloutPath(origin, fileName, filePath);
-            logger.info("上传成功");
+            client.uploadWithAbsloutPath(domain.getInputStream(), domain.getFileName(), domain.getPath());
+            TimeUnit.MILLISECONDS.sleep(600);
+            logger.info("上传成功 : {}",domain.getFileName());
         } catch (Exception e) {
             //失效当前的sftpClient
             if (Objects.nonNull(client)) {
@@ -57,14 +55,16 @@ public class SftpPoolService extends BaseDomain implements Closeable {
             }
 
             //继续抛出异常
-            throw new SftpPoolExeception(e);
+//            throw new SftpPoolExecetion(e);
+            logger.error("异常文件 ：{}", domain.getFileName(),e);
         } finally {
             // 将当前的sftpClient 归还到线程池中
+            logger.info("return this client to pool : {}",domain.getFileName());
             if (client != null) {
                 try {
                     sftpPool.returnObject(client);
                 } catch (Exception e) {
-                    logger.error("归还连接至sftp连接池中异常，{}", e);
+                    logger.error("归还连接至sftp连接池中异常，{}",client, e);
                 }
             }
         }
@@ -72,23 +72,7 @@ public class SftpPoolService extends BaseDomain implements Closeable {
     }
 
 
-    @Override
-    public void close() {
 
-        try {
-            if (channel != null) {
-                channel.disconnect();
-                logger.info("sftp channel disconnected");
-            }
-
-            if (session != null) {
-                session.disconnect();
-                logger.info("sftp session disconnected");
-            }
-        } catch (Exception e) {
-            logger.warn("sftp channel closed error!");
-        }
-    }
 
     @Override
     public String toString() {
@@ -99,8 +83,21 @@ public class SftpPoolService extends BaseDomain implements Closeable {
         return sftpPool;
     }
 
-    public SftpPoolService setSftpPool(ObjectPool<SftpClient> sftpPool) {
-        this.sftpPool = sftpPool;
-        return this;
-    }
+//    protected synchronized SftpClient borrowFromPool(){
+//        try {
+//            return sftpPool.borrowObject();
+//        }catch (Exception e){
+//            logger.error("获取连接失败 : {}",e);
+//            return null;
+//        }
+//    }
+//
+//    protected synchronized void returnClient(SftpClient client){
+//        try {
+//            sftpPool.returnObject(client);
+//        }catch (Exception e){
+//            logger.error("归还client至连接池失败 : {}",client,e);
+//        }
+//    }
+
 }

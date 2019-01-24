@@ -1,15 +1,15 @@
-package com.ironass.common_pool;
+package ironass.common_pool;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
+import com.xxl.integration.base.BaseDomain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
@@ -18,19 +18,23 @@ import java.util.Properties;
  * @author lixin
  * @date 2019-01-21 16:24
  **/
-public class SftpClient implements Closeable {
+public class SftpClient extends BaseDomain implements Closeable {
 
+    private static final long serialVersionUID = 6982830753311018466L;
     private final Logger logger = LoggerFactory.getLogger(SftpClient.class);
     private Session session = null;
     private ChannelSftp channel = null;
     private SftpParam sftpParam;
 
+    public SftpClient(){
+    }
 
-    public SftpClient(SftpParam sftpParam){
+
+    public SftpClient(SftpParam sftpParam) {
         this.sftpParam = sftpParam;
     }
 
-    public void connect() throws Exception {
+    public synchronized void  connect() throws Exception {
 
         Objects.requireNonNull(sftpParam, "sftp 参数不能为空");
 
@@ -58,10 +62,8 @@ public class SftpClient implements Closeable {
     }
 
 
-
     public void uploadWithAbsloutPath(InputStream src, String fileName, String dst) {
         try {
-            System.out.println("开始模拟上传了");
             mkdirWithAbsolutePath(dst);
             channel.put(src, dst + fileName);
         } catch (Exception e) {
@@ -98,19 +100,40 @@ public class SftpClient implements Closeable {
 
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
-            if(channel != null){
+            if (channel != null) {
                 channel.disconnect();
                 logger.info("sftp channel disconnected");
             }
 
-            if(session != null){
+            if (session != null) {
                 session.disconnect();
                 logger.info("sftp session disconnected");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.warn("sftp channel closed error!");
         }
     }
+
+    public void setSftpParam(SftpParam sftpParam) {
+        this.sftpParam = sftpParam;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public SftpClient setSession(Session session) {
+        this.session = session;
+        return this;
+    }
+
+
+
+    public SftpParam getSftpParam() {
+        return sftpParam;
+    }
+
+
 }
