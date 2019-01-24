@@ -1,8 +1,8 @@
 package ironass.commonpool;
 
 import ironass.BaseSpringTest;
-import ironass.common_pool.SftpDomain;
-import ironass.common_pool.SftpPoolService;
+import com.ironass.common_pool.SftpDomain;
+import com.ironass.common_pool.SftpPoolService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
