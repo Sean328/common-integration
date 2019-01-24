@@ -1,10 +1,10 @@
 package com.ironass.common_pool;
 
+import com.ironass.base.BaseDomain;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
-import com.xxl.integration.base.BaseDomain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
