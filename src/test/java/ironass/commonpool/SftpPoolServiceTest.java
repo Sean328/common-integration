@@ -1,7 +1,8 @@
-package com.ironass.commonpool;
+package ironass.commonpool;
 
-import com.ironass.BaseSpringTest;
-import com.ironass.common_pool.SftpPoolService;
+import ironass.BaseSpringTest;
+import ironass.common_pool.SftpDomain;
+import ironass.common_pool.SftpPoolService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -26,11 +27,11 @@ public class SftpPoolServiceTest extends BaseSpringTest {
             @Override
             public void run() {
                 SftpPoolService sftpInnerPool = sftpPoolService;
-                while (true){
-                    System.out.println("idle number : "+sftpInnerPool.getSftpPool().getNumIdle());
-                    System.out.println("active number : "+sftpInnerPool.getSftpPool().getNumActive());
+                while (true) {
+                    System.out.println("idle number : " + sftpInnerPool.getSftpPool().getNumIdle());
+                    System.out.println("active number : " + sftpInnerPool.getSftpPool().getNumActive());
                     try {
-                        TimeUnit.MILLISECONDS.sleep(600);
+                        TimeUnit.MILLISECONDS.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -39,32 +40,26 @@ public class SftpPoolServiceTest extends BaseSpringTest {
         };
         Executors.defaultThreadFactory().newThread(runnableTask).start();
 
-        byte[] bytes  = new byte[]{1,2,3,4,5};
+        byte[] bytes = new byte[]{1, 2, 3, 4, 5};
 
         InputStream inputStream = new ByteArrayInputStream(bytes);
 
         for (int i = 0; i <= 100; i++) {
+            final String path = "/upload/pool/";
+            String fileName = "file" + i + "x";
 
-            String path = "/upload/pool/";
-            String fileName = "file"+i;
+            SftpDomain domain = new SftpDomain();
+            domain.setFileName(fileName);
+            domain.setPath(path);
+            domain.setInputStream(inputStream);
 
-            sftpPoolService.uploadFile(inputStream,fileName,path);
 
+            new Thread(() -> sftpPoolService.uploadFile(domain)).start();
         }
-
-        InputStream inputStream2 = new ByteArrayInputStream(bytes);
-
-        for (int i = 0; i <= 100; i++) {
-
-            String path = "/upload/pool2/";
-            String fileName = "file"+i;
-
-            sftpPoolService.uploadFile(inputStream2,fileName,path);
-        }
-
 
 
         TimeUnit.SECONDS.sleep(300);
     }
+
 
 }

@@ -6,9 +6,9 @@
 
     <description>sftp配置</description>
 
-    <bean id="sftpPoolClient" class="com.ironass.integration.commonpool.SftpPoolService">
+    <bean id="sftpPoolClient" class="com.xxl.integration.commonpool.SftpPoolService">
         <constructor-arg name="sftpParam">
-            <bean class="com.ironass.integration.commonpool.SftpParam">
+            <bean class="com.xxl.integration.commonpool.SftpParam">
                 <property name="host" value="${sftp.host}"/>
                 <property name="port" value="${sftp.port}"/>
                 <property name="userName" value="${sftp.user}"/>
@@ -25,8 +25,11 @@
                 <property name="maxWaitMillis" value="${sftp.pool.maxWaitMillis}"/>
                 <property name="timeBetweenEvictionRunsMillis" value="${sftp.pool.timeBetweenEvictionRunsMillis}"/>
                 <property name="minEvictableIdleTimeMillis" value="${sftp.pool.minEvictableIdleTimeMillis}"/>
+                <property name="blockWhenExhausted" value="${sftp.pool.blockwhenExhausted}"/>
             </bean>
         </constructor-arg>
+
+        <!-- 连接池满之后的拒绝策略，不建议使用这种配置，使用GenericObjectPoolConfig中的 blockWhenExhausted  和 maxWaitMillis 参数即可-->
         <constructor-arg name="abandonedConfig">
             <bean class="org.apache.commons.pool2.impl.AbandonedConfig">
                 <property name="removeAbandonedOnBorrow" value="true"/>
