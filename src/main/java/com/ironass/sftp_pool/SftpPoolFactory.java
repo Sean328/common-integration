@@ -1,4 +1,4 @@
-package com.ironass.common_pool;
+package com.ironass.sftp_pool;
 
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;

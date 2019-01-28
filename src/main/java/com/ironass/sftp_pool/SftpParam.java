@@ -1,4 +1,4 @@
-package com.ironass.common_pool;
+package com.ironass.sftp_pool;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.ironass.base.BaseDomain;

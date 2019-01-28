@@ -6,9 +6,9 @@
 
     <description>sftp配置</description>
 
-    <bean id="sftpPoolClient" class="com.ironass.common_pool.SftpPoolService">
+    <bean id="sftpPoolClient" class="com.ironass.sftp_pool.SftpPoolService">
         <constructor-arg name="sftpParam">
-            <bean class="com.ironass.common_pool.SftpParam">
+            <bean class="com.ironass.sftp_pool.SftpParam">
                 <property name="host" value="${sftp.host}"/>
                 <property name="port" value="${sftp.port}"/>
                 <property name="userName" value="${sftp.user}"/>
