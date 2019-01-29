@@ -10,7 +10,8 @@ import java.sql.SQLException;
 /**
  * 校验器，校验数据库连接是否失效
  * @author lixin
- * @date 2019-01-28 11:44
+ * @date 2019-01-28 11:44BoundedPool
+ * PoolFactory
  **/
 public class JDBCConnectValidator implements Validator<Connection> {
     private static final Logger logger = LoggerFactory.getLogger(JDBCConnectValidator.class);

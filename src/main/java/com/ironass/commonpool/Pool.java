@@ -23,9 +23,9 @@ public interface Pool <T> {
     void release(T t);
 
     /**
-     * Destorys the pool and release all instance
+     * destroys the pool and release all instance
      */
-    void destory();
+    void destroy();
 
     /**
      * 内部接口 用来验证连接实例是否还有效

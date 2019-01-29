@@ -1,5 +1,8 @@
 package com.ironass.commonpool;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.*;
 
 /**
@@ -10,13 +13,14 @@ import java.util.concurrent.*;
  * @date 2019-01-25 17:27
  **/
 public final class BoundedBlockingPool<T> extends AbstractPool<T> implements BlockingPool<T> {
+    private static final Logger logger = LoggerFactory.getLogger(BoundedBlockingPool.class);
 
     private int size;
     private BlockingQueue<T> objects;
     private Validator validator;
     private ObjectFactory objectFactory;
     private ExecutorService executor = Executors.newCachedThreadPool();
-    private volatile boolean destoryCalled;
+    private volatile boolean destroyCalled;
 
     public BoundedBlockingPool(int size, Validator validator, ObjectFactory objectFactory) {
         super();
@@ -25,12 +29,12 @@ public final class BoundedBlockingPool<T> extends AbstractPool<T> implements Blo
         this.objectFactory = objectFactory;
         objects = new LinkedBlockingQueue(size);
         initObjects();
-        destoryCalled = false;
+        destroyCalled = false;
     }
 
     @Override
     public T get(long time, TimeUnit unit) {
-        if (!destoryCalled) {
+        if (!destroyCalled) {
             T t = null;
             try {
                 t = objects.poll(time, unit);
@@ -40,29 +44,37 @@ public final class BoundedBlockingPool<T> extends AbstractPool<T> implements Blo
             }
             return t;
         }
-        throw new IllegalStateException("Object pool is already destoryed");
+        throw new IllegalStateException("Object pool already destroyed");
     }
 
     @Override
     public T get() {
-        if (!destoryCalled) {
+        if (!destroyCalled) {
             T t = null;
             try{
-                t = objects.poll();
+                while (t == null){
+                    t = objects.poll();
+                }
+                if(t != null){
+                    logger.error("从池中获取连接，连接信息：{}",t.toString());
+                }else {
+                    logger.info("池中获取对象为空");
+                }
                 return t;
             }catch (Exception e){
                 Thread.currentThread().interrupt();
             }
 
         }
-        throw new IllegalStateException("Object pool is already destoryed");
+        throw new IllegalStateException("Object pool already destroyed");
     }
 
     @Override
-    public void destory() {
-        destoryCalled = true;
+    public void destroy() {
+        destroyCalled = true;
         executor.shutdownNow();
         clearResource();
+        logger.info("Bounded Blocking Pool already destoryed");
     }
 
     private void clearResource() {
@@ -92,6 +104,8 @@ public final class BoundedBlockingPool<T> extends AbstractPool<T> implements Blo
         for (int i = 0; i < size; i++) {
             objects.add((T) objectFactory.createNew());
         }
+
+        logger.info("Bounded Blocking Pool already created, size:{}",size);
     }
 
     private class ObjectReturn<E> implements Callable{
