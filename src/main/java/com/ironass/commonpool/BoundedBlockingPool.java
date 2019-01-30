@@ -74,7 +74,7 @@ public final class BoundedBlockingPool<T> extends AbstractPool<T> implements Blo
         destroyCalled = true;
         executor.shutdownNow();
         clearResource();
-        logger.info("Bounded Blocking Pool already destoryed");
+        logger.info("Bounded Blocking Pool already destroyed");
     }
 
     private void clearResource() {

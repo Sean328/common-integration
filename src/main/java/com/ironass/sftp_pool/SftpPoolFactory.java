@@ -51,7 +51,7 @@ public class SftpPoolFactory extends BasePooledObjectFactory<SftpClient> {
             p.getObject().close();
         } catch (Exception e) {
             // Errors may happen if returning a broken resource
-            logger.warn("sftp pool destoryed error, sftp info:{}", sftpParam);
+            logger.warn("sftp pool destroyed error, sftp info:{}", sftpParam);
         }
     }
 }

@@ -93,7 +93,7 @@ public class BoundedPool<T> extends AbstractPool<T> {
     public void destroy() {
         destroyCalled = true;
         clearResources();
-        logger.info("BoundedPool already destoryed");
+        logger.info("BoundedPool already destroyed");
     }
 
     private void clearResources() {
