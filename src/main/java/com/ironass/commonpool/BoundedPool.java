@@ -22,7 +22,9 @@ public class BoundedPool<T> extends AbstractPool<T> {
     private Queue<T> objects;
     private ObjectFactory<T> objectFactory;
     private Validator<T> validator;
-    //使用信号量来实现锁
+    /**
+     * 使用信号量来实现锁，初始化信号量大小与并发线程大小一致
+     */
     private Semaphore permits = new Semaphore(10);
     private volatile boolean destroyCalled;
 
@@ -63,28 +65,54 @@ public class BoundedPool<T> extends AbstractPool<T> {
     public T get() {
         T t = null;
         if (!destroyCalled) {
-            while (!permits.tryAcquire()) {
-                logger.trace("could not get semaphore ,wating for release");
-                try {
-                    TimeUnit.MILLISECONDS.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+//            while (!permits.tryAcquire()) {
+//                logger.warn("could not get semaphore ,wating for release");
+//                try {
+//                    TimeUnit.MILLISECONDS.sleep(100);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+
+            for(;;){
+                if(permits.tryAcquire()){
+                    logger.info("获取到信息量");
+                    logger.info("当前队列中个数 : {}",objects.size());
+
+                    t = objects.poll();
+                    if(t == null){
+                        logger.error("获取到信号量，但未从队列中取到连接");
+                    }
+                    break;
+                }else {
+                    logger.warn("未获取到信号量，继续尝试");
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
-            logger.info("pool size : {} ", objects.size());
-            while (t == null) {
-                t = objects.poll();
-            }
-
-            if (t != null) {
-                logger.error("从池中获取连接，连接信息：{}", t.toString());
-            } else {
-                logger.info("从池中获取连接信息为空");
-            }
+//            while (t == null) {
+//                logger.info("pool size : {} ", objects.size());
+//                t = objects.poll();
+//                try {
+//                    TimeUnit.MILLISECONDS.sleep(100);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            if (t != null) {
+//                logger.info("从池中获取连接，连接信息：{}", t.toString());
+//            } else {
+//                logger.error("从池中获取连接信息为空");
+//            }
         } else {
             throw new IllegalArgumentException("Object pool arealdy destroyed");
         }
+
         return t;
     }
 
