@@ -1,6 +1,7 @@
 package com.ironass.currentlimiter.demo;
 
 /**
+ * 基于漏桶实现限流，漏桶大小固定，处理速度固定，但请求进入速度不固定（在突发情况请求过多时，会丢弃过多的请求）
  * @author lixin
  * @date 2019-02-11 18:02
  **/
