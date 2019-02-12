@@ -32,7 +32,7 @@ public class SpeedCounter {
      */
     private static AtomicLong currentCounts = new AtomicLong(0);
 
-    private static long isAccess(int taskId, int nth) {
+    private static boolean isAccess(int taskId, int nth) {
         long nowTime = System.currentTimeMillis();
         if (nowTime < startTime + inteval) {
             long oldValue;
@@ -44,9 +44,9 @@ public class SpeedCounter {
 
 
             if (newValue <= currentCounts.get()) {
-                return newValue;
+                return Boolean.TRUE;
             } else {
-                return -newValue;
+                return Boolean.FALSE;
             }
 
         } else {
@@ -57,10 +57,11 @@ public class SpeedCounter {
                     startTime = nowTime;
                 }
             }
-            return 0;
+            return Boolean.TRUE;
         }
 
     }
+
 
     public static void main(String[] args) {
 
@@ -77,7 +78,7 @@ public class SpeedCounter {
                 try {
                     for (int i = 0; i <= 100; i++) {
                         long cnt;
-                        if ((cnt = isAccess(taskId, i)) > 0) {
+                        if (isAccess(taskId, i)) {
                             System.out.println("任务ID" + taskId + "任务号" + i + "执行成功");
                         } else {
                             System.out.println("任务ID" + taskId + "任务号" + i + "执行失败-----------");
