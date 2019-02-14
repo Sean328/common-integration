@@ -1,6 +1,6 @@
 package com.ironass.currentlimiter;
 
-import com.xxl.integration.currentlimiter.domain.LimiterProperty;
+import com.ironass.currentlimiter.domain.LimiterProperty;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 
