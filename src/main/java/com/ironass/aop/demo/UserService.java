@@ -8,6 +8,7 @@ public class UserService {
 
     public String getDemoData(){
 
+//        throw new RuntimeException();
 
         return "demo";
     }

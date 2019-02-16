@@ -16,8 +16,15 @@ public class AopTest extends BaseSpringTest{
 
     @Test
     public void testAspectJ(){
-        String s = userService.getDemoData();
-        System.out.println(s);
+
+        try {
+            String s = userService.getDemoData();
+            System.out.println(s);
+
+        }catch (Exception e){
+            System.out.println("测试异常时，aop中after-throwing是否生效");
+        }
+
     }
 
 }
