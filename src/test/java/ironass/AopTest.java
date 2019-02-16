@@ -4,7 +4,6 @@ import com.ironass.aop.demo.UserService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
-import javax.annotation.Tainted;
 
 /**
  * @author sean
