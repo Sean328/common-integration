@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <description></description>
+    <bean id = "userService" class="com.ironass.aop.demo.UserService"/>
+    <bean id="aopXmlConfigService" class="com.ironass.aop.demo.AopXmlConfigService"/>
+
+
+    <aop:config>
+        <aop:aspect ref="aopXmlConfigService"> <!--指定切面-->
+            <!--定义切点-->
+            <aop:pointcut id="logpoint" expression="execution(* com.ironass.aop.demo.UserService.getDemoData(..))"></aop:pointcut>
+            <!--定义连接点-->
+            <aop:before pointcut-ref="logpoint" method="beforeLog"></aop:before>
+            <aop:after pointcut-ref="logpoint" method="afterLog"></aop:after>
+            <aop:after-returning pointcut-ref="logpoint" method="afterReturningLog"></aop:after-returning>
+            <aop:after-throwing pointcut-ref="logpoint" method="afterThrowingLog"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
