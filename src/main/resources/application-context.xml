@@ -14,7 +14,7 @@
     </bean>
 
     <!-- 使用Annotation自动注册Bean -->
-    <context:component-scan base-package="com.xxl"/>
+    <context:component-scan base-package="com.ironass"/>
 
 
     <import resource="classpath:spring/*.xml"/>
