@@ -1,10 +1,12 @@
 package com.ironass.annotation.sample1;
 
+import com.ironass.base.BaseDomain;
+
 /**
  * @author sean
  * @date 2019/03/03/22:56
  **/
-public class User {
+public class User extends BaseDomain {
     private String name;
     private String age;
 
