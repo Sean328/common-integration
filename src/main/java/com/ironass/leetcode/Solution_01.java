@@ -1,13 +1,9 @@
 package com.ironass.leetcode;
 
-/**
- * @author lixin
- * @date 2019-02-28 10:16
- **/
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*
  * @lc app=leetcode id=1 lang=java
  *
  * [1] Two Sum
@@ -38,7 +34,7 @@ import java.util.Map;
  *
  *
  */
-class Solution {
+class Solution_01 {
     public int[] twoSum(int[] nums, int target) {
         Map<Integer,Integer> map = new HashMap();
 
