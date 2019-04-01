@@ -56,7 +56,6 @@ public class LRULinkedHashMap<K,V> extends LinkedHashMap<K,V>{
     public static void main(String[] args) throws Exception{
         //accessOrder，及访问顺序， true表示开启最近访问顺序，false表示插入顺序
         Map<String,Integer> map=new LinkedHashMap<>(10,0.75f,true);
-
         map.put("0",0);
         map.put("1",1);
         map.put("2",2);
@@ -66,13 +65,11 @@ public class LRULinkedHashMap<K,V> extends LinkedHashMap<K,V>{
         map.put("6",6);
         map.put("7",7);
 
-
         map.get("6");
         map.get("4");
 
-
-        for(Map.Entry<String, Integer> entry: map.entrySet()){
-            System.out.println(entry.getValue());
-        }
+        map.entrySet().stream().forEach(p -> {
+            System.out.println(p.getValue());
+        });
     }
 }
