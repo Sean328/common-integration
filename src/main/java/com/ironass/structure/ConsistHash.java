@@ -39,7 +39,6 @@ public class ConsistHash<T> {
 
             @Override
             public Long hash(Object key) {
-//                return fnv1HashingAlg(key.toString());
                 return md5HashingAlg(key.toString());
             }
         };
@@ -93,6 +92,7 @@ public class ConsistHash<T> {
     /**
      * 获得一个最近的顺时针节点
      *
+     * 原理是从treeMap中获取一个比传入key值更大或者相等的sortedMap,即最近的一个顺时针节点
      * @param key 为给定键取Hash，取得顺时针方向上最近的一个虚拟节点对应的实际节点
      * @return 节点对象
      */
@@ -100,7 +100,7 @@ public class ConsistHash<T> {
         if (circle.isEmpty()) {
             return null;
         }
-        long hash = hashFunc.hash(key);
+        long hash = hashFunc.hash(key.toString());
         if (!circle.containsKey(hash)) {
             SortedMap<Long, T> tailMap = circle.tailMap(hash); //返回此映射的部分视图，其键大于等于 hash
             hash = tailMap.isEmpty() ? circle.firstKey() : tailMap.firstKey();
@@ -110,12 +110,12 @@ public class ConsistHash<T> {
     }
 
     /**
-     * 使用MD5算法
+     * 使用MD5算法获取hash值
      *
      * @param key
      * @return
      */
-    private static long md5HashingAlg(String key) {
+    public static long md5HashingAlg(String key) {
         MessageDigest md5 = null;
         try {
             md5 = MessageDigest.getInstance("MD5");
@@ -127,7 +127,7 @@ public class ConsistHash<T> {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return 0l;
+        return 0L;
     }
 
     /**
@@ -139,8 +139,9 @@ public class ConsistHash<T> {
     private static long fnv1HashingAlg(String key) {
         final int p = 16777619;
         int hash = (int) 2166136261L;
-        for (int i = 0; i < key.length(); i++)
+        for (int i = 0; i < key.length(); i++) {
             hash = (hash ^ key.charAt(i)) * p;
+        }
         hash += hash << 13;
         hash ^= hash >> 7;
         hash += hash << 3;
@@ -148,12 +149,4 @@ public class ConsistHash<T> {
         hash += hash << 5;
         return hash;
     }
-
-    /**
-     * Hash算法对象，用于自定义hash算法
-     */
-    public interface HashFunc {
-        public Long hash(Object key);
-    }
-
 }

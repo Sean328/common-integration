@@ -3,6 +3,8 @@ package com.ironass.concurrent.datastructure;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * 并发环境下 线程安全的 支持链表插入后并有序排列的List
+ * 大概原理是 支持并发插入，只锁next 下一个node
  * @author lixin
  * @date 2019-01-31 11:48
  **/
