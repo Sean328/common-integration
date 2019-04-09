@@ -1,4 +1,4 @@
-package com.ironass.lambda.predicate;
+package com.ironass.functional.predicate;
 
 /**
  *

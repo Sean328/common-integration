@@ -1,4 +1,4 @@
-package com.ironass.lambda.supplier;
+package com.ironass.functional.supplier;
 
 import com.ironass.dsl.builder.Order;
 
