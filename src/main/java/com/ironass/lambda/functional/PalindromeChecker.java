@@ -1,4 +1,4 @@
-package com.ironass.functional;
+package com.ironass.lambda.functional;
 
 /**
  * 回文检查

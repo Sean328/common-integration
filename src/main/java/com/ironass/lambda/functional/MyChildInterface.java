@@ -1,4 +1,4 @@
-package com.ironass.functional;
+package com.ironass.lambda.functional;
 
 /**
  * 继承函数式接口的MyChildInterface将不再是函数式接口，只是一个标准接口
