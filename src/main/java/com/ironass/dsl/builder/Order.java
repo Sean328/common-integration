@@ -11,7 +11,7 @@ public class Order extends BaseDomain {
 
     private static final long serialVersionUID = -740265745770856205L;
 
-    static class Builder{
+    public static class Builder{
         private String security;
         private int quantity;
         private int limitPrice;
