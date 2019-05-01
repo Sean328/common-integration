@@ -1,11 +1,11 @@
 package com.ironass.concurrent.threadlocal.sample1.service;
 
-import com.xxl.integration.concurrent.threadlocal.sample1.ConnectionManager;
-import com.xxl.integration.concurrent.threadlocal.sample1.dao.ClassRoomDAO;
-import com.xxl.integration.concurrent.threadlocal.sample1.dao.ClassRoomDAOImpl;
-import com.xxl.integration.concurrent.threadlocal.sample1.dao.StudentDAO;
-import com.xxl.integration.concurrent.threadlocal.sample1.dao.StudentDAOImpl;
-import com.xxl.integration.concurrent.threadlocal.sample1.domain.Student;
+import com.ironass.concurrent.threadlocal.sample1.ConnectionManager;
+import com.ironass.concurrent.threadlocal.sample1.dao.ClassRoomDAO;
+import com.ironass.concurrent.threadlocal.sample1.dao.ClassRoomDAOImpl;
+import com.ironass.concurrent.threadlocal.sample1.dao.StudentDAO;
+import com.ironass.concurrent.threadlocal.sample1.dao.StudentDAOImpl;
+import com.ironass.concurrent.threadlocal.sample1.domain.Student;
 
 /**
  * @author lixin

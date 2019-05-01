@@ -1,6 +1,6 @@
 package com.ironass.concurrent.threadlocal.sample1.domain;
 
-import com.xxl.integration.base.BaseDomain;
+import com.ironass.base.BaseDomain;
 
 /**
  * @author lixin

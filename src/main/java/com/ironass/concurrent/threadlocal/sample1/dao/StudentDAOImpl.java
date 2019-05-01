@@ -1,7 +1,7 @@
 package com.ironass.concurrent.threadlocal.sample1.dao;
 
-import com.xxl.integration.concurrent.threadlocal.sample1.ConnectionManager;
-import com.xxl.integration.concurrent.threadlocal.sample1.domain.Student;
+import com.ironass.concurrent.threadlocal.sample1.ConnectionManager;
+import com.ironass.concurrent.threadlocal.sample1.domain.Student;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -1,6 +1,7 @@
 package com.ironass.concurrent.masterparallel.sample3;
 
-import com.xxl.integration.concurrent.mastercon.sample3.dmain.BankMarketing;
+
+import com.ironass.concurrent.masterparallel.sample3.dmain.BankMarketing;
 
 import java.io.BufferedReader;
 import java.io.IOException;

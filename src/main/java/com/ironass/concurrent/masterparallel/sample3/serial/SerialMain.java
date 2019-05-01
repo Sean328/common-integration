@@ -1,8 +1,9 @@
 package com.ironass.concurrent.masterparallel.sample3.serial;
 
-import com.xxl.integration.concurrent.mastercon.sample3.BankMarketingLoader;
-import com.xxl.integration.concurrent.mastercon.sample3.KnnClassifier;
-import com.xxl.integration.concurrent.mastercon.sample3.dmain.BankMarketing;
+
+import com.ironass.concurrent.masterparallel.sample3.BankMarketingLoader;
+import com.ironass.concurrent.masterparallel.sample3.KnnClassifier;
+import com.ironass.concurrent.masterparallel.sample3.dmain.BankMarketing;
 
 import java.util.Date;
 import java.util.List;

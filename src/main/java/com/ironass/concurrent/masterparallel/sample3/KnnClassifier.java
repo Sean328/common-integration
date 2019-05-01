@@ -1,7 +1,8 @@
 package com.ironass.concurrent.masterparallel.sample3;
 
-import com.xxl.integration.concurrent.mastercon.sample3.dmain.Distance;
-import com.xxl.integration.concurrent.mastercon.sample3.dmain.Sample;
+
+import com.ironass.concurrent.masterparallel.sample3.dmain.Distance;
+import com.ironass.concurrent.masterparallel.sample3.dmain.Sample;
 
 import java.util.*;
 

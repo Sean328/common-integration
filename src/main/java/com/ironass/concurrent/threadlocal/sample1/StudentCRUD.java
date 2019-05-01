@@ -1,8 +1,8 @@
 package com.ironass.concurrent.threadlocal.sample1;
 
-import com.xxl.integration.concurrent.threadlocal.sample1.domain.Student;
-import com.xxl.integration.concurrent.threadlocal.sample1.service.StudentService;
-import com.xxl.integration.concurrent.threadlocal.sample1.service.StudentServiceImpl;
+import com.ironass.concurrent.threadlocal.sample1.domain.Student;
+import com.ironass.concurrent.threadlocal.sample1.service.StudentService;
+import com.ironass.concurrent.threadlocal.sample1.service.StudentServiceImpl;
 
 /**
  * @author lixin
