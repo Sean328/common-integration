@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 辅助类，加载数据使用
  * @author lixin
  * @date 2019-05-01 11:46
  **/

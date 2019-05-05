@@ -1,6 +1,7 @@
-package com.ironass.concurrent.masterparallel.sample3;
+package com.ironass.concurrent.masterparallel.sample3.serial;
 
 
+import com.ironass.concurrent.masterparallel.sample3.EuclideanDistanceCalculator;
 import com.ironass.concurrent.masterparallel.sample3.dmain.Distance;
 import com.ironass.concurrent.masterparallel.sample3.dmain.Sample;
 
