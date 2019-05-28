@@ -1,6 +1,6 @@
 package com.ironass.maintest;
 
-
+import com.ironass.base.LazyStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,13 +17,28 @@ public class LogTestMain {
 
     public static void main(String[] args) {
 
-        logger.debug("日志测试，传入参数: {}", logPrinter());
+        LogTestMain logTestMain = new LogTestMain();
+        logger.debug("日志测试，传入参数: {}", LazyStringUtils.lazy(() -> logTestMain.logPrinterStr("xxl",new Object())));
     }
 
-    static String logPrinter() {
+      String logPrinter() {
         logger.info("测试日志输出");
         System.out.println("测试日志输出,控制台");
-        return "测试字符串";
+          java.util.logging.Logger log = java.util.logging.Logger.getGlobal();
+          //noinspection MethodRefCanBeReplacedWithLambda
+          log.info(() -> logPrinterStr("xx",new Object()));
+
+          logger.debug("日志测试，传入参数: {}", LazyStringUtils.lazy(() -> this.logPrinterStr("xxl",new Object())));
+
+          return "测试字符串";
     }
 
+    String logPrinterStr(String string, Object xxl1) {
+        logger.info("测试日志输出");
+        System.out.println("测试日志输出,控制台");
+        java.util.logging.Logger logger = java.util.logging.Logger.getGlobal();
+        logger.info(this::logPrinter);
+
+        return "测试字符串";
+    }
 }
