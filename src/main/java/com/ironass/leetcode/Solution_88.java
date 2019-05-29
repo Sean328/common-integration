@@ -1,5 +1,7 @@
 package com.ironass.leetcode;
 
+import java.util.stream.IntStream;
+
 /**
  * Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
  * <p>
@@ -27,6 +29,8 @@ public class Solution_88 {
     /**
      * 大致题意: 给定两个有序数组，合并成一个有序数组。需注意，默认其中一个数组已经是默认合并后的长度了
      * 解法： 从后往前遍历，最大的赋值给长数组中。
+     * i 为长数组位指针位置，j为短数组尾指针位置
+     * 分别比较长数组和短数组的最后一位，大的那个移动以扩充数组的最后一位。依次两个数组尾标递减。
      *
      * @param nums1
      * @param m
@@ -56,6 +60,7 @@ public class Solution_88 {
 
         Solution_88 solution_88 = new Solution_88();
         solution_88.merge(a, a.length - b.length, b, b.length);
-        System.out.println(a);
+        int []c = a;
+        IntStream.range(0,5).map(i -> c[i]).forEach(System.out::println);
     }
 }
