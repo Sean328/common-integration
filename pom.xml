@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ironass</groupId>
-    <artifactId>intergration-core</artifactId>
+    <artifactId>practide-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>intergration-core</name>
+    <name>practide-demo</name>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->

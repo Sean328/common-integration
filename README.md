@@ -1,2 +1,2 @@
-# integration-core
-杂乱的集成项目
+# partice-demo
+练习使用的demo
