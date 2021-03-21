@@ -4,7 +4,7 @@ package com.ironass.leetcode;
  * @author lixin
  * @date 2019-03-04 15:36
  **/
-public class Solution_07 {
+public class Solution_07_Reverse {
     /**
      * @lc app=leetcode id=7 lang=java
      *
@@ -53,20 +53,26 @@ public class Solution_07 {
      * 需要注意java整型是4个字节，也就是32位，表示范围和题目要求是一致的。
      * 所以结果值应该使用8个字节64位的long类型存储，并判断有没有超过32位的描述界限
      */
-    class Solution {
-        public int reverse(int x) {
-            long result = 0;
-            while(x!=0){
-                result = (result * 10) +  (x % 10);
-                x = x / 10;
-            }
 
-            if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE){
-                result = 0;
-            }
-
-            return (int) result;
-
+    public static  int reverse(int x) {
+        long result = 0;
+        while (x != 0) {
+            result = (result * 10) + (x % 10);
+            x = x / 10;
         }
+
+        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
+            result = 0;
+        }
+
+        return (int) result;
+
     }
+
+    public static void main(String[] args) {
+        int a = 3214;
+
+        System.out.println(reverse(a));
+    }
+
 }
