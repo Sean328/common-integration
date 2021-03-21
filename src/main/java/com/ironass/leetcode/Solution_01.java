@@ -1,5 +1,6 @@
 package com.ironass.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,21 +36,28 @@ import java.util.Map;
  *
  */
 class Solution_01 {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer,Integer> map = new HashMap();
+    public  static  int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap();
 
-        for(int i=0;i<nums.length; i++){
-            map.put(nums[i],i);
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
         }
-        int[] result =new int[2] ;
-        for(int i=0;i<nums.length;i++){
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
             int j = target - nums[i];
-            if(map.containsKey(j) && map.get(j)!=i){
+            if (map.containsKey(j) && map.get(j) != i) {
                 result[0] = i;
                 result[1] = map.get(j);
             }
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        int [] a = new int[]{1,2,4};
+        int sum = 5;
+        int [] result = twoSum(a, sum);
+        Arrays.stream(result).forEach(System.out:: println);
     }
 }
