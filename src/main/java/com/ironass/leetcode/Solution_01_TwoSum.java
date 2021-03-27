@@ -36,7 +36,7 @@ import java.util.Map;
  *
  */
 class Solution_01_TwoSum {
-    public  static  int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap();
 
         for (int i = 0; i < nums.length; i++) {
@@ -54,10 +54,35 @@ class Solution_01_TwoSum {
         return result;
     }
 
+    private static int[] pratic20210327(int[] nums, int target) {
+        if (nums.length == 0) {
+            return null;
+        }
+        Map<Integer, Integer> valMap = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            valMap.put(nums[i], i);
+        }
+
+        int [] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            int rest = target - nums[i];
+            if(valMap.containsKey(rest)){
+                result[0] = i;
+                result[1] = valMap.get(rest);
+            }
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
-        int [] a = new int[]{1,2,4};
+        int[] a = new int[]{1, 2, 4};
         int sum = 5;
-        int [] result = twoSum(a, sum);
-        Arrays.stream(result).forEach(System.out:: println);
+        int[] result = twoSum(a, sum);
+        Arrays.stream(result).forEach(System.out::println);
+        System.out.println("--------------------");
+        int[] result20210327 = pratic20210327(a, sum);
+        Arrays.stream(result20210327).forEach(System.out::println);
     }
 }
