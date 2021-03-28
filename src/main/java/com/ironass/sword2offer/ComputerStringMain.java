@@ -13,6 +13,10 @@ import java.util.Stack;
  */
 public class ComputerStringMain {
 
+    /**
+     * 参考实现： https://www.nowcoder.com/questionTerminal/2006edef839c453d9cf69e6371993f25?orderByHotValue=1&page=1&onlyReference=false
+     * @param args
+     */
     public static void main(String[] args) {
         String str = "3*[a2*[c]]";
 
