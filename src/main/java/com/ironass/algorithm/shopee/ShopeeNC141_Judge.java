@@ -22,16 +22,11 @@ public class ShopeeNC141_Judge {
         if(str == null || str == ""){
             return false;
         }
-        if(str.length() == 1){
-            return true;
-        }
-
         for(int i = 0, j=str.length() -1; i < str.length(); i++, j-- ){
             if(str.charAt(i) != str.charAt(j)){
                 return false;
             }
         }
-
         return true;
     }
 }
