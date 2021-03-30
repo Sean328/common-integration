@@ -19,7 +19,7 @@ public class QuickSort {
         if (p >= r) {
             return;
         }
-        int pivot = partiton2(a, p, r);
+        int pivot = partiton3(a, p, r);
         quickSortIntern(a, p, pivot - 1);
         quickSortIntern(a, pivot + 1, r);
     }
@@ -61,6 +61,28 @@ public class QuickSort {
             }
         }
 
+        int tmp = a[i];
+        a[i] = a[r];
+        a[r] = tmp;
+
+        return i;
+    }
+
+
+
+    private static int partiton3(int []a, int p, int r){
+        int pivot = a[r];
+        int i = p;
+        for(int j = p; j < a.length; j++){
+            if(a[j] < pivot){
+                if(i != j){
+                    int tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+                i++;
+            }
+        }
         int tmp = a[i];
         a[i] = a[r];
         a[r] = tmp;
