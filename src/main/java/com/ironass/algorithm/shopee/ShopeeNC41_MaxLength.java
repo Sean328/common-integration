@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 给定一个数组arr，返回arr的最长无的重复子串的长度(无重复指的是所有数字都不相同)。
+ * 给定一个数组arr，返回arr的最长无重复子串的长度(无重复指的是所有数字都不相同)。
  */
 public class ShopeeNC41_MaxLength {
 
