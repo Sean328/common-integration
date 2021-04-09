@@ -18,7 +18,7 @@ import java.util.Stack;
 public class ShopeeNC1_StrAdd {
 
     public static void main(String[] args) {
-
+        System.out.println(solve("99","1"));
     }
 
     /**
@@ -29,7 +29,7 @@ public class ShopeeNC1_StrAdd {
      * @param t string字符串 表示第二个整数
      * @return string字符串
      */
-    public String solve(String s, String t) {
+    public static  String solve(String s, String t) {
         StringBuilder stringBuilder = new StringBuilder();
         char[] char1 = s.toCharArray();
         char[] char2 = t.toCharArray();
