@@ -2,6 +2,11 @@ package com.ironass.algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * 1. 原地排序算法。
+ * 2. 稳定的排序算法
+ * 3. 最好是时间复杂度为 O(n), 最坏情况时间复杂度为 O(n2)
+ */
 public class InsertSort {
 
     public static void main(String[] args) {

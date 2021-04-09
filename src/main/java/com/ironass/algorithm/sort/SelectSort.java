@@ -2,6 +2,11 @@ package com.ironass.algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * 1. 空间复杂度为 O(1)，是一种原地排序算法
+ * 2. 最好情况时间复杂度、最坏情况和平均情况时间复杂度都为 O(n2)
+ * 3. 选择排序是一种不稳定的排序算法
+ */
 public class SelectSort {
 
     public static void main(String[] args) {
