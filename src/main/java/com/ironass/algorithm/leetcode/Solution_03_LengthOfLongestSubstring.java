@@ -43,6 +43,11 @@ public class Solution_03_LengthOfLongestSubstring {
         return maxLength;
     }
 
+    /**
+     * 最优解法
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring2(String s) {
         if (s == null || s.length() == 0) {
             return 0;
@@ -68,6 +73,11 @@ public class Solution_03_LengthOfLongestSubstring {
         return maxLength;
     }
 
+    /**
+     * 滑动窗口求解
+     * @param s
+     * @return
+     */
     public  static int lengthOfLongestSubstring3(String s){
         int n = s.length();
         int maxLength = 0;//记录最长子串的长度
@@ -84,9 +94,31 @@ public class Solution_03_LengthOfLongestSubstring {
         return maxLength;
     }
 
-    public static void main(String[] args) {
+    public  static int lengthOfLongestSubstring20210414(String s){
+        int start = 0;
+        int end = 0;
+        int maxLength = 0;
+        Set<Character> charSet = new HashSet<>();
+        while (start < s.length() && end < s.length()){
+            Character character = s.charAt(end);
+            if(charSet.contains(character)){
+                charSet.remove(s.charAt(start));
+                start += 1;
+            } else {
+                charSet.add(character);
+                end += 1;
+                maxLength = charSet.size() > maxLength ? charSet.size() : maxLength;
+            }
+        }
+
+        return maxLength;
+    }
+
+
+        public static void main(String[] args) {
         String s = "abdca";
         int i = lengthOfLongestSubstring3(s);
         System.out.println(i);
+        System.out.println(lengthOfLongestSubstring20210414(s));
     }
 }

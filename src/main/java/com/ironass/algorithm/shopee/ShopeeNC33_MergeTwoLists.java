@@ -26,7 +26,6 @@ public class ShopeeNC33_MergeTwoLists {
         ListNode dummy = new ListNode(0);
         ListNode currNode = dummy;
         while (l1 != null && l2 != null){
-            ListNode tmp;
             if(l1.val > l2.val){
                 currNode.next = l2;
                 currNode = currNode.next;
