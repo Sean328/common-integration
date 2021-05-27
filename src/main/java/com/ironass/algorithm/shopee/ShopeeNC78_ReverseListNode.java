@@ -9,7 +9,7 @@ package com.ironass.algorithm.shopee;
  * 返回值
  * {3,2,1}
  */
-public class ShopeeNC78_ReverseList {
+public class ShopeeNC78_ReverseListNode {
 
 
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class ShopeeNC78_ReverseList {
         node2.setNext(node3);
         node3.setNext(node4);
 
-        ShopeeNC78_ReverseList reverseList = new ShopeeNC78_ReverseList();
+        ShopeeNC78_ReverseListNode reverseList = new ShopeeNC78_ReverseListNode();
         System.out.println(reverseList.reverseList(head));
     }
 
